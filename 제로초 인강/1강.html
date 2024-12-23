@@ -19,11 +19,22 @@
             background-color: yellow;
             display: inline-block; /*인라인블록*/
         }
+        #header {
+            text-align: left;
+        }
         #header-hamburgar {
             margin-top: 18px;
-            background-color: blue;
-            width: 46px;
-            height: 46px;
+            padding: 10px;
+            display: inline-block;
+
+        }
+        #header-hamburgar > div {
+            background-image: url(./sp_main.png);
+            width: 26px;
+            height: 26px; 
+            background-repeat: no-repeat;
+            background-size: 463px 440px;
+            background-position: -311px -166px;
         }
         #main {
             height: 2000px;
@@ -35,7 +46,7 @@
         <div id="wrap-center"> <!-- 센터 -->
             <div id="header">
                 <div id="header-hamburgar">
-
+                    <div></div>
                 </div>
             </div>
             <div id="search"></div>
