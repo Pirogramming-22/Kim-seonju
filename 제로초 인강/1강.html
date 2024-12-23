@@ -7,6 +7,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">  
     <title>NAVER</title>
     <style>
+        html,body {
+            margin: 0;
+            padding: 0;
+        }
         #wrap {
             text-align: center; /*가운데 정렬*/
         }
@@ -14,6 +18,12 @@
             width: 1280px;
             background-color: yellow;
             display: inline-block; /*인라인블록*/
+        }
+        #header-hamburgar {
+            margin-top: 18px;
+            background-color: blue;
+            width: 46px;
+            height: 46px;
         }
         #main {
             height: 2000px;
@@ -23,7 +33,11 @@
 <body>
     <div id="wrap"> <!-- 전체 -->
         <div id="wrap-center"> <!-- 센터 -->
-            <div id="header"></div>
+            <div id="header">
+                <div id="header-hamburgar">
+
+                </div>
+            </div>
             <div id="search"></div>
             <div id="nav"></div>
             <div id="main"></div>
