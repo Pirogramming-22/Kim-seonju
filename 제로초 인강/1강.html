@@ -89,6 +89,7 @@
         #header-hamburgar:hover::before {
             position: absolute;
             content: '';
+            z-index: 0; /*z-index : 형제관계에서만*/
             left: 1px;
             top: 1px;
             width: 44px;
@@ -100,6 +101,8 @@
             background-image: url(./sp_main.png);
             width: 26px;
             height: 26px; 
+            z-index: 1; /*z-index*/
+            position: relative;
             background-repeat: no-repeat;
             background-size: 463px 440px;
             background-position: -311px -166px;
@@ -114,7 +117,9 @@
         <div id="wrap-center"> <!-- 센터 -->
             <div id="header">
                 <button id="header-hamburgar">
+                    <!-- ::before -->
                     <div></div>
+                    <!-- ::after -->
                 </button>
             </div>
             <div id="search"></div>
