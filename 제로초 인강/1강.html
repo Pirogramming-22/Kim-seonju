@@ -4,10 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico"> 
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">  
     <title>NAVER</title>
+    <style>
+        #wrap {
+            text-align: center; /*가운데 정렬*/
+        }
+        #wrap-center {
+            width: 1280px;
+            background-color: yellow;
+            display: inline-block; /*인라인블록*/
+        }
+        #main {
+            height: 2000px;
+        }
+    </style>
 </head>
 <body>
-    <div>안녕하세요</div>
+    <div id="wrap"> <!-- 전체 -->
+        <div id="wrap-center"> <!-- 센터 -->
+            <div id="header"></div>
+            <div id="search"></div>
+            <div id="nav"></div>
+            <div id="main"></div>
+        </div>
+    </div>
 </body>
 </html>
