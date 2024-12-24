@@ -578,6 +578,8 @@
                     color: rgba(8,8,8,.5);
                     display: flex;
                     justify-content: flex-start;
+                    line-height: 23px;
+                    margin-bottom: 17px;
 
                 }
                 #main-newstand header .bold {
@@ -587,6 +589,10 @@
                 #main-newstand-gray {
                     display: flex;
                     justify-content: flex-start;
+                    height: 50px;
+                    padding: 12px 20px;
+                    background-color: var(--color_block_bg);
+                    border-radius: 4px;
                 }
                 #main-newstand a {
                     text-decoration: none;
@@ -596,6 +602,27 @@
                 }
                 #main-newstand a:hover {
                     text-decoration: underline;
+                }
+                #main-newstand-grid {
+                    display: grid;  /*그리드*/
+                    justify-content: center;
+                    align-items: center;
+                    height: 224px;
+                    width: 790px;
+                    grid-gap:1px; /*요소(칸들 사이의 간격, 칸사이 선*/
+                    background-color: var(--color_border_in);
+                    grid-template-rows: repeat(4,1fr); /*행4줄*/
+                    grid-template-columns: repeat(6,1fr); /*세로6칸*/
+                    border: 1px solid var(--color_border_in);
+                    border-radius: 4px;
+                    margin-top: 18px;
+                }
+                #main-newstand-grid > div {
+                    height: 100%;
+                    background-color: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
                 #main-nestand footer {
                     border-top: 1px solid var(--color_block_in);
