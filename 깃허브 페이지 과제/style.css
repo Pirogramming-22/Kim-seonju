@@ -133,6 +133,8 @@ form button {
     background-color: rgb(11, 197, 52);
     color:white;
     border: none;
+    cursor: pointer;
+    
 }
 footer {
     background-color: white;
