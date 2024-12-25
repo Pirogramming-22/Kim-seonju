@@ -1,0 +1,148 @@
+#header {
+    background-color: #333;
+    padding: 16px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 90px;
+}
+
+#header-left {
+    display: flex;
+    align-items: center;
+}
+#header-left button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 12px;
+}
+#header-left button svg {
+    vertical-align: middle; /*SVG 아이콘을 텍스트와 세로로 중앙 정렬*/
+}
+#header-right > div {
+    position: relative; 
+    display: inline-block;
+}
+#header-right > div svg {
+    position: absolute; 
+    right: 8px; 
+    top: 50%; transform: translateY(-50%); /*수직정렬*/
+    pointer-events: none;
+}
+#header-right button {
+    width: 70px;
+    height: 36px;
+    color: white;
+    cursor: pointer;
+}
+#header-left button, #header-right button {
+    background: none; /* 배경 제거 */
+    color: white; /* 텍스트 색상 흰색 */
+}
+#header-left button svg, #header-right > div svg {
+    fill: white; /* 아이콘 흰색 */
+}
+#search-input {
+    width: 240px;
+    height: 30px;
+    border-radius: 6px;
+    padding-left: 10px;
+    border: none;
+    background-color: #444;
+}
+#search-input::placeholder { /* 플레이스홀더*/
+    color: white;  
+    opacity: 0.8; /* 투명도 약간 낮게 설정 */
+}
+#Sign-in {
+    border : none;
+}
+#Sign-up {
+    background: none; /* 배경 제거 */
+    border: 1px solid white; /* 흰색 테두리 */
+    border-radius: 6px;
+}
+#main {
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+#main-left {
+    width: 394px;
+    margin: 50px;
+}
+#main-left p {
+    color: rgba(255, 255, 255, 0.6); 
+}
+.bold-white {
+    color: white; /* 텍스트 색상 흰색 */
+    font-weight: bold; /* 굵은 글씨 */
+    text-decoration: underline; /* 밑줄 추가 */
+    text-decoration-color: rgba(255, 255, 255, 0.5); /* 밑줄 색상을 흰색의 투명한 버전으로 설정 */
+    text-decoration-thickness: 1px; /* 밑줄 두께를 얇게 설정 */
+    text-underline-offset: 5px; /* 밑줄을 글씨 밑에 맞춤 */
+}
+#main-right {
+    width: 360px;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: white;
+}
+h1 {
+    font-size: 50px;
+    margin: 0;
+    color: white;
+}
+
+form input {
+    width: 100%;
+    height: 45px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border-width: 1px; /* 테두리 두께 조정 (예: 2px) */
+    border-style: solid; /* 테두리 스타일: 실선 */
+    border-color: #e0dfdf; /* 테두리 색상 */
+    padding: 5px; /* 입력 필드 내부 여백 */
+    box-sizing: border-box;
+}
+form p {
+    font-size: 68%;
+    margin-bottom: 15px;
+}
+.blue {
+    color: rgb(50, 122, 230);
+}
+
+/* 입력란에 포커스가 가해졌을 때 배경색 변경 */
+form input:focus {
+    background-color: #254292; 
+    outline: none; /* 기본 아웃라인 제거 */
+}
+form button {
+    width: 100%;
+    height: 60px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background-color: rgb(11, 197, 52);
+    color:white;
+    border: none;
+}
+footer {
+    background-color: white;
+    position: relative; /* footer를 기준으로 이미지 위치 조정 */
+    height: 150px; /* footer 높이 설정 */
+    overflow: hidden; /* 넘치는 부분 잘리게 설정 */
+}
+img {
+    position: absolute;
+    bottom: -4%; /* footer의 하단에 배치 */
+    left: 50%; /* 이미지가 footer의 중간에 위치하도록 설정 */
+    width: 33%; /* 이미지 크기 */
+    z-index: 1; /* 이미지가 다른 콘텐츠 위에 오도록 설정 */
+  }
