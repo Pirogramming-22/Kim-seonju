@@ -1,10 +1,10 @@
 #header {
     background-color: #333;
-    padding: 16px 30px;
+    padding: 16px 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 90px;
+    height: 80px;
 }
 
 #header-left {
@@ -71,6 +71,7 @@
     align-items: center;
     justify-content: center;
     padding-bottom: 50px;
+    height: 600px;
 }
 #main-left {
     width: 394px;
