@@ -51,6 +51,7 @@
     padding-left: 10px;
     border: none;
     background-color: #444;
+    color: white;
 }
 #search-input::placeholder { /* 플레이스홀더*/
     color: white;  
