@@ -1,0 +1,237 @@
+body {
+    margin: 0;
+    background-color: black;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+header, section {
+    width: 70%; /* 모든 요소가 동일한 너비를 가짐 */
+    margin: 0 auto; /* 가운데 정렬 */
+    box-sizing: border-box; /* padding과 border가 width 계산에 포함되도록 설정 */
+}
+
+#wrap {
+    background-color: black;
+    color: white;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+#header-list li:hover {
+    transform: translateY(-5px); 
+}
+#header-green {
+    color: #0bec12;
+}
+
+/*section*/
+
+#main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+}
+
+#now {
+    font-size: 25px;
+}
+/*여기*/
+.project {
+    background-color: #333333;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+.project-card {
+    display: flex;
+    gap:16px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+.project-picture {
+    width: 170px;
+    height: 110px;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.project-picture img{
+    height: 140px;
+    border-radius: 20px;
+}
+.project:hover {
+    transform: translateY(-2px); /* 박스 호버 시 2px 올라가는 효과 */
+}
+.project:hover img {
+    transform: scale(1.1);
+}
+.project-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.4rem;
+}
+.project-name {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+    font-weight: 900;
+    height: 30px;
+}
+.project-text p {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    padding-bottom: 10px;
+}
+.project-team {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+.project-team li {
+    background-color: rgba(236, 236, 236, 0.466);
+    border-radius: 5px;
+    padding: 3px 8px;
+    color: black;
+    font-size: 1rem;
+}
+.project-team li.leader {
+    background-color: #2188b6;
+    color: white;
+}
+@media (max-width:800px){
+    .project-card {
+        flex-direction: column;
+        align-items: center;    /* 수평 중앙 정렬 */
+        text-align: center;     /* 텍스트 중앙 정렬 */
+    }
+    #header-list {
+        display: none;
+    }
+}
+
+.hamburger {
+    position: absolute; /* 부모 요소 기준으로 위치 설정 */
+    top: 20px; /* 위쪽 여백 */
+    right: 20px; /* 오른쪽 여백 */
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+.hamburger > div {
+    width: 25px;
+    height: 3px;
+    background-color: rgba(236, 236, 236, 0.466);
+}
+.project:hover .hamburger > div:first-child {
+    transform-origin: left;
+    transform: scaleX(0.5);
+    transition: transform 0.3s ease;
+}
+.project:hover .hamburger > div:last-child {
+    transform-origin: right;
+    transform: scaleX(0.5);
+    transition: transform 0.3s ease;
+}
+.project:hover .hamburger > div:nth-child(2) {
+    transform: scaleX(1);
+    transition: transform 0.3s ease; /* 중간 막대는 그대로 유지 */
+}
+
+/*footer*/
+#footer-top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 220px;
+    background-color: #333;
+    margin-top: 30px;
+    cursor: pointer;
+}
+#footer-top a:hover, .icon-back:hover, #mail-line span:hover, #footer-list li:hover{
+    transform: translateY(-5px);
+}
+#footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#footer-list{
+    list-style: none;
+}
+#footer-left a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+#footer-icon {
+    display: flex;
+    gap: 10px;
+}
+.icon-back {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-back img {
+    width: 21px;
+    height: 21px;
+}
+
+#mail-line {
+    display: flex;
+    gap: 10px;
+}
+
+#footer-right {
+    display: flex;
+    align-items: center;
+}
+
+#footer-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+/* 각 항목 사이에 세로 바 추가 */
+#footer-list li:not(:last-child)::after {
+    content: "|"; /* 세로 바 */
+    color: white;  /* 색상 */
+    margin-left: 15px; /* 바 왼쪽 여백 */
+}
+#footer-bottom {
+    opacity: 0.8;
+    text-align: center;
+    padding: 16px;
+}

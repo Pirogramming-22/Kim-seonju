@@ -150,3 +150,10 @@ img {
     width: 33%; /* 이미지 크기 */
     z-index: 1; /* 이미지가 다른 콘텐츠 위에 오도록 설정 */
   }
+
+
+  .project {
+    flex-direction: column;
+    align-items: center;    /* 수평 중앙 정렬 */
+    text-align: center;     /* 텍스트 중앙 정렬 */
+}
