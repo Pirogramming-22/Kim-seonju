@@ -9,7 +9,7 @@ function initGame() {
     document.getElementById('attempts').innerText = attempts;
 
     answer = generateRandomNumbers(); 
-    //console.log("정답: ", answer);
+    console.log("정답: ", answer);
 
     clearInput();
 
@@ -94,9 +94,17 @@ function calculateResult(guess) {
 //결과 출력 함수
 function displayResult(guess, result) {
     let resultDiv = document.getElementById('results');
-    let resultText = document.createElement("p") // <p> 요소 생성
-    resultText.textContent = `${guess.join(" ")} : ${result.strike} S ${result.ball} B`; //texContent : 텍스트 값 설정
-    resultDiv.appendChild(resultText);
+    let resultText = ""
+    if (result.strike === 0 && result.ball === 0) {
+        resultText = '<span class="out">0</span>'; // strike, ball이 모두 0일 때
+    } else {
+        resultText = `${result.strike} <span class="strike">S</span> ${result.ball} <span class="ball">B</span>`
+    }
+    
+    // 결과를 화면에 추가
+    let resultParagraph = document.createElement('p');
+    resultParagraph.innerHTML = `${guess.join(" ")} : ${resultText}`;
+    resultDiv.appendChild(resultParagraph);
 }
 
 //게임 종료 확인 함수
