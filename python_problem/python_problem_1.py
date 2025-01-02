@@ -13,3 +13,8 @@ while(1) :
         
     else:
         break
+
+for i in range(cnt):
+    num += 1
+    print(f"playerA : {num}")
+    
