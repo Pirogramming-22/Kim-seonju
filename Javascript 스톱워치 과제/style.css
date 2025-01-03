@@ -1,0 +1,100 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#top {
+    height: 50px;
+}
+#main {
+    background-color: rgb(167, 166, 166);
+    width: 250px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#time {
+    background: white;
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+#buttons {
+    display: flex;
+    gap: 25px;
+}
+.button {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+#records {
+    width: 300px;
+    height: 500px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#records_top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(167, 166, 166);
+    border-radius: 10px 10px 0 0;
+    height: 40px;
+}
+#wrapbutton {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: none;
+    border: 2px solid;
+    cursor: pointer;
+}
+#del {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#del:hover {
+    img {
+        filter: invert(13%) sepia(100%) saturate(6683%) hue-rotate(355deg) brightness(89%) contrast(128%);
+    }
+}
+
+.circle_button {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: none;
+    border: 2px solid;
+    cursor: pointer;
+    display: inline-block;  /* 버튼을 인라인 요소로 설정 (리스트 항목과 나란히 배치) */
+}
+
+#record {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#record li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 28px;
+    gap: 70px;
+}
