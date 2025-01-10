@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리뷰 삭제</title>
+</head>
+<body>
+    <h1>리뷰 삭제</h1>
+    <p>정말로 리뷰 "<strong>{{review.title}}</strong>"를 삭제하시겠습니까?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">삭제</button>
+        <a href="{% url 'reviews:review_detail' pk=review.id %}">취소</a>
+    </form>
+</body>
+</html>

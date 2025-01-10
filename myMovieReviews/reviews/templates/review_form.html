@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Movie Review</title>
+</head>
+<body>
+    <h1>Movie review🍟</h1>
+    <form method="post"> <!--폼 데이터를 서버에 POST 방식으로 전송-->
+        {% csrf_token %} <!--보안-->
+        {{ form.as_p }}  <!-- View에서 전달한 **폼 객체(form)**를 HTML로 변환하여 출력/ as_p 메서드는 각 폼 필드를 <p> 태그로 감싸서 출력-->
+        <button type="submit">Save</button> <!--form 태그 안에 버튼을 누르면, 폼 안의 입력 필드 값을 모두 수집하여 -> view의 POST 요청-->
+    </form>
+</body>
+</html>
