@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie Reviews</title>
+</head>
+<body>
+    <h1>My Movie Reviews</h1>
+    <a href="{% url 'reviews:review_create' %}">리뷰 작성</a>
+    {#href="{% url 'app_name:이동페이지'%}"#}
+    <ul>
+        {% for review in reviews %} <!--반복문-->
+            <li>
+                <a href="{% url 'reviews:review_detail' pk=review.id %}">{{review.title}}</a> {#제목을 누르면 / pk=review.id : 해당 id 페이지로#}
+                <p>개봉년도 : {{review.year}}</p>
+                <p>장르 : {{review.genre}}</p>
+                <p>별점 : {{review.rating}}</p>
+            </li>
+        {% endfor %} <!--반복문 종료-->
+    </ul>
+</body>
+</html>
