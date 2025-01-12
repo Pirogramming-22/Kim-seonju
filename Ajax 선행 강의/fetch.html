@@ -13,13 +13,13 @@
       })
     */
     //Asynchronous : 비동기식
-    function callbackme(){
-      console.log('response end');
-    }
-    fetch('html').then(callbackme);
+    fetch('html').then(function(response){
+      if(response.status == '404'){
+        alert('NOt found')
+      }
+    });
     console.log(1);
     console.log(2);
-      
     ">
     
   </body>
