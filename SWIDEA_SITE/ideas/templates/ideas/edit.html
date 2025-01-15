@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+아이디어 수정
+{% endblock %}
+
+{% block content %}
+<h3 class="text_center">Idea detail Update</h3>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" id="update">수정 완료</button>
+    <a href="{% url 'ideas:detail' idea.id %}" id="update_no">취소</a>
+</form>
+{% endblock %}

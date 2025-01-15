@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+아이디어 디테일
+{% endblock %}
+
+{% block content %}
+<h3 class="text_center">Idea detail</h3>
+
+<div class="detail_card">
+    <div class="image-container" id="detail-image-container">
+        {% if idea.image %}
+        <img src="{{ idea.image.url }}" alt="{{ idea.title }}" class="card-img">
+        {% endif %}
+    
+        <!-- 찜하기 버튼 -->
+        <a href="{% url 'ideas:toggle_star' idea.id %}?next={{ request.path }}" class="star-icon">
+            {% if idea.is_starred %}⭐
+            {% else %}☆
+            {% endif %}
+        </a>
+    </div>
+    
+    
+    <div class="card_body">
+        <p><strong>제목: </strong> {{ idea.title }}</p>
+        <p><strong>내용: </strong> {{ idea.content }}</p>
+        <p><strong>개발 툴: </strong> 
+            {% if idea.devtool %}
+                <a href="{% url 'tools:detail' idea.devtool.id %}">{{ idea.devtool.name }}</a>
+            {% else %}
+                없음
+            {% endif %}
+        </p>
+        
+        
+        <p><strong>관심도:</strong> {{ idea.interest }}</p>
+        
+    </div>
+</div>
+
+<div class="button_list">
+    <button><a href="{% url 'ideas:edit' idea.id %}">수정</a></button>
+    <button><a href="{% url 'ideas:index' %}">목록</a></button>
+    {# 삭제 버튼 #}
+    {# action : 폼이 제출되었을 때 데이터를 전송할 대상 URL을 지정하는 속성 #}
+    <form id="delete_form" action="{% url 'ideas:delete' idea.id %}" method="post">
+        {% csrf_token %}
+        <button type="button" onclick="confirmDelete()">삭제</button>
+    </form>
+</div>
+
+{# confirm() 함수 : 확인 창을 띄우고, "확인" 또는 "취소" 버튼 중 하나를 선택하게 하는 함수 / boolean 값을 반환 / 확인:true / 취소:false#}
+{# .submit() : 폼을 제출 #}
+<script>
+function confirmDelete() {
+    if (confirm("정말로 이 아이디어를 삭제하시겠습니까?")) {
+        document.getElementById('delete_form').submit();
+    }
+}
+</script>
+{% endblock %}

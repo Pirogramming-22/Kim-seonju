@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+개발툴 관리
+{% endblock %}
+
+{% block content %}
+<h3 class="text_center">DevTool List</h3>
+
+<div class="tool-list">
+    {% for tool in tools %}
+        <div class="tool_card">
+        <p><a href="{% url 'tools:detail' tool.id %}">{{ tool.name }}</a></p>
+        <p>{{tool.kind}} </p>
+        <p>{{tool.content}}</p>
+        </div>
+        <hr>
+    {% empty %}
+        <p>등록된 개발툴이 없습니다.</p>
+    {% endfor %}
+</div>
+
+<a href="{% url 'tools:create' %}" class="tool_create_btn">개발툴 등록</a>
+{% endblock %}

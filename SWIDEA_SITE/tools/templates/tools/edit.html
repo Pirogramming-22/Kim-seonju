@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+개발툴 수정
+{% endblock %}
+
+{% block content %}
+<h3 class="text_center">DevTool Edit</h3>
+
+<form action="{% url 'tools:edit' tool.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="button-group">
+        <button type="submit" id="update">수정 완료</button>
+        <a href="{% url 'tools:detail' tool.id %}" id="update_no">취소</a>
+    </div>
+    
+</form>
+{% endblock %}
