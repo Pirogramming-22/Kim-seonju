@@ -1,4 +1,4 @@
-# My Movie Reviews App
+# SWIDEA_SITE
 
 - **Project Name**: `idea_site`
 - **App Name**: `ideas` , `tools`
