@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+개발툴 등록
+{% endblock %}
+
+{% block content %}
+<h3 class="text_center">DevTool Register</h3>
+
+<form action="{% url 'tools:create' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn" id="btn-first">등록</button>
+    <a href="{% url 'tools:index' %}" class="btn" id = "btn-second">취소</a>
+</form>
+{% endblock %}

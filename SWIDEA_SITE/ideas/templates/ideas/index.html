@@ -1,0 +1,115 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+아이디어 관리
+{% endblock %}
+
+{% block content %}
+<div class = 'text_top'>
+    <h3 class="text_center">Idea List</h3>
+
+    <div class="sort-buttons text-center">
+        <button class="btn btn-secondary" id="sort-button" onclick="toggleSortMenu()">정렬 기준</button>
+        <div id="sort-menu" class="sort-menu" style="display: none;">
+            <a class="sort-item" href="?sort=starred">찜하기순</a>
+            <a class="sort-item" href="?sort=name">이름순</a>
+            <a class="sort-item" href="?sort=oldest">등록순</a>
+            <a class="sort-item" href="?sort=latest">최신순</a>
+        </div>
+    </div>
+</div>
+<div class="row card-container"> <!-- 부모 컨테이너에 flexbox 적용 -->
+    {% for idea in page_obj %}
+    <div class="card-wrapper"> <!-- 각 카드를 감싸는 래퍼 -->
+        <div class="card">
+            <div class="image-container">
+                {% if idea.image %}
+                <img src="{{ idea.image.url }}" class="card-img" alt="{{ idea.title }}">
+                {% endif %}
+                
+                <!-- 찜하기 버튼 -->
+                <a href="{% url 'ideas:toggle_star' idea.id %}?next={{ request.path }}" class="star-icon">
+                    {% if idea.is_starred %}⭐
+                    {% else %}☆
+                    {% endif %}
+                </a>
+            </div>
+            <div class="card_body">
+                <h3><a href="{% url 'ideas:detail' idea.id %}">{{ idea.title }}</a></h3>
+                <p class="card_text">예상 개발 툴:
+                    {% if idea.devtool %}
+                        {{ idea.devtool.name }}
+                    {% else %}
+                        없음
+                    {% endif %}
+                </p>
+
+                <!-- 관심도 조절 버튼 -->
+                <div class="idea_interest">아이디어 관심도: 
+                    <button onclick="adjustInterest({{ idea.id }}, 'increase')" class="btn btn-sm btn-primary">+</button>
+                    <span id="interest_{{ idea.id }}">{{ idea.interest }}</span>
+                    <button onclick="adjustInterest({{ idea.id }}, 'decrease')" class="btn btn-sm btn-secondary">-</button>
+                </div>  
+            </div>             
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-center">등록된 아이디어가 없습니다.</p>
+    {% endfor %}
+</div>
+
+
+<!-- 페이지네이션 UI -->
+<!-- &sort={{ sort }}: 페이지 이동 시에도 정렬 상태가 유지 -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1&sort={{ sort }}">처음</a>
+            <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort }}">이전</a>
+        {% endif %}
+
+        <span class="current">
+            페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&sort={{ sort }}">다음</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&sort={{ sort }}">마지막</a>
+        {% endif %}
+    </span>
+</div>
+
+<script>
+    function toggleSortMenu() {
+        var menu = document.getElementById('sort-menu');
+        if (menu.style.display === 'none' || menu.style.display === '') {
+            menu.style.display = 'block';
+        } else {
+            menu.style.display = 'none';
+        }
+    }
+
+
+//{# fetch(url, options) #}
+//{# 1. AJAX 요청이 /3/adjust-interest-ajax/increase/ URL로 전송
+//2. Django 뷰 함수에서 관심도를 1 증가시키고, 새로운 관심도 값을 포함한 JSON 응답({'interest': 새로운 값})을 반환합니다.
+//3.JavaScript가 이 응답을 받아서 **data.interest**로 값을 가져오고, 해당 HTML 요소의 내용을 업데이트합니다.#}
+
+    // 관심도 조절 함수
+    function adjustInterest(ideaId, adjustment) {
+        fetch(`/${ideaId}/adjust-interest-ajax/${adjustment}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json' // 요청 본문이 JSON 형식임을 지정
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // 관심도 값 업데이트
+            document.getElementById(`interest_` + ideaId).innerText = data.interest; 
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+{% endblock %}

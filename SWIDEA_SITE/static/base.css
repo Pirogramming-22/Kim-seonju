@@ -1,0 +1,177 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: #F1F0E8;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+body > div {
+    width: 80%;
+    min-height: 100vh;
+    background: #E5E1DA;
+    padding: 40px 20px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* 상단 네비게이션 */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.navbar_nav {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    color: white;
+}
+.text_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/* 페이지 컨테이너 */
+.page_container {
+    background-color: #B3C8CF;
+    padding: 20px;
+    border-radius: 8px;
+    height: 900px;
+    position: relative;
+}
+
+/* 카드 전체 컨테이너 */
+.row {
+    display: flex;
+    flex-wrap: wrap;        /* 카드가 줄바꿈될 수 있도록 설정 */
+    gap: 20px;              /* 카드 사이 간격 */
+    justify-content: center; /* 가로 방향 가운데 정렬 */
+    margin: 50px 0;
+}
+
+/* 개별 카드 */
+.card-wrapper {
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card-wrapper:hover {
+    transform: translateY(-10px); /* 호버 시 위로 살짝 올라가는 효과 */
+}
+
+/* 카드 이미지 */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+}
+
+.image-container .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율을 유지하며 잘 맞추기 */
+    border-radius: 8px 8px 0 0;
+}
+
+#detail-image-container {
+    width: 300px;
+    height: 300px;
+}
+
+/* 찜하기 버튼 */
+.image-container .star-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: gold;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.image-container .star-icon:hover {
+    color: orange;
+}
+
+/* 카드 내용 */
+.card_body {
+    padding: 15px;
+    text-align: center;
+}
+
+.card_body h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.card_body p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* 관심도 조절 버튼 */
+.idea_interest {
+    margin-top: 10px;
+}
+
+.idea_interest > button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+.idea_interest > button:hover {
+    color: #007bff;
+}
+
+/* 링크 기본 스타일 제거 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container a {
+    text-decoration: none;
+}
+
+/* 페이지네이션 */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+    position: absolute;
+    left: 46%;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ffffff;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}

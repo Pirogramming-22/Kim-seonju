@@ -1,0 +1,35 @@
+.tool-list {
+    display: flex;
+    flex-direction: column;  /* 카드들을 세로로 나열 */
+    gap: 10px;               /* 카드 사이의 간격 */
+}
+
+.tool_card {
+    display: flex;
+    align-items: center;
+    gap: 20px;               /* 카드 내부 항목 간의 간격 */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.tool_card a {
+    font-weight: bold;
+}
+
+/* 버튼 기본 스타일 */
+.tool_create_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: #ddd solid 2px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+아이디어 등록
+{% endblock %}
+
+{% block content %}
+<h3 class="text_center">Idea Register</h3>
+
+{# enctype="multipart/form-data" : 파일 업로드를 처리#}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn" id="btn-first">등록</button>
+    <a href="{% url 'ideas:index' %}" class="btn" id = "btn-second">취소</a>
+</form>
+{% endblock %}

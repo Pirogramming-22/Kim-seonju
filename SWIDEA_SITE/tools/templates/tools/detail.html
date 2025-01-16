@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+개발툴 디테일
+{% endblock %}
+
+{% block content %}
+<h3 class="text-center">DevTool Detail</h3>
+<div class="detail-container">
+    <div class="tool-info">
+        <p><strong>이름:</strong> {{ tool.name }}</p>
+        <p><strong>종류:</strong> {{ tool.kind }}</p>
+        <p><strong>설명:</strong> {{ tool.content }}</p>
+    </div>
+
+    <h4>이 개발툴을 사용하는 아이디어 목록</h4>
+    <ul class="idea-list">
+        {% for idea in ideas %}
+            <li><a href="{% url 'ideas:detail' idea.id %}">{{ idea.title }}</a></li>
+        {% empty %}
+            <li>이 개발툴을 사용하는 아이디어가 없습니다.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="button_list">
+        <button><a href="{% url 'tools:edit' tool.id %}">수정</a></button>
+        <button><a href="{% url 'tools:index' %}">목록</a></button>
+        {# 삭제 버튼 #}
+        {# action : 폼이 제출되었을 때 데이터를 전송할 대상 URL을 지정하는 속성 #}
+        <form id="delete_form" action="{% url 'tools:delete' tool.id %}" method="post">
+            {% csrf_token %}
+            <button type="button" onclick="confirmDelete()">삭제</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function confirmDelete() {
+        if (confirm("정말로 이 개발툴을 삭제하시겠습니까?")) {
+            document.getElementById('delete_form').submit();
+        }
+    }
+</script>
+{% endblock %}
