@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insta</title>
+</head>
+<body>
+    <h1>게시물</h1>
+    <div class="post" data-id="2"> <!--data-id: 각 게시물의 고유 ID를 저장하여 Ajax 요청에 활용-->
+        <p>게시물 : 짱구</p>
+        <img src="../static/pro.jpeg" alt="짱구">
+        <div class="like">
+            <button class="like_btn"> Like </button>
+            <span class="like_count"> 0 </span>
+        </div>
+        <div class="comments">
+            <div class="comment_list">
+            </div> <!--댓글 목록-->
+            <input type="text" class="comment_input" placeholder="댓글을 입력하세요">
+            <button class="comment_submit">등록</button>
+        </div>
+    </div>
+
+
+    <script>
+        // 페이지 로드 시 서버에서 최신 데이터를 가져오기
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/get_posts/', {  // 서버에서 게시물 데이터 가져오기
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                data.posts.forEach(post => {
+                    const postElement = document.querySelector(`.post[data-id="${post.id}"]`);
+                    if (postElement) {
+                        postElement.querySelector('.like_count').textContent = post.likes; // 좋아요 수 업데이트
+
+                        // 댓글 목록 업데이트
+                        const commentList = postElement.querySelector('.comment_list');
+                        commentList.innerHTML = ''; // 기존 댓글 목록 초기화
+
+                        post.comments.forEach(comment => {
+                            const commentElement = document.createElement('div');
+                            commentElement.className = 'comment';
+                            commentElement.dataset.commentId = comment.id; // 댓글 ID 저장
+                            commentElement.innerHTML = `
+                                <span>${comment.content}</span>
+                                <button class="delete_comment_btn">삭제</button>`;
+                            commentList.appendChild(commentElement);
+                        });
+                    }
+                });
+            })
+        });
+        //좋아요
+        const likeButtons = document.querySelectorAll('.like_btn');
+
+        likeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const post = button.closest('.post'); // 버튼이 포함된 게시물 요소
+                const postId = post.dataset.id; // 선택한 요소의 data-id 속성에서 값을 가져옴
+
+                //Ajax 요청 보내기
+                fetch('/like_ajax/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',  // 요청 데이터 형식
+                        'X-CSRFToken': getCsrfToken()        // CSRF 토큰 추가
+                    },
+                    body: JSON.stringify({id:postId}) // 서버로 전송할 데이터
+                })
+                .then(response => response.json()) // 서버 응답 데이터를 JSON 객체로 변환
+                .then(data => { // data = 서버에서 반환된 JSON 데이터 ex> { 'id':1 , 'likes':2}
+                    post.querySelector('.like_count').textContent = data.likes;
+                })
+            });
+        });
+
+        //댓글
+        const commentButton = document.querySelectorAll('.comment_submit')
+
+        commentButton.forEach(button => {
+            button.addEventListener('click', () =>{
+                const post = button.closest('.post');
+                const postId = post.dataset.id;
+                const input = post.querySelector('.comment_input');
+                const content = input.value.trim(); // .trim() : 양쪽의 공백 제거
+
+                if (!content) {
+                    alert("댓글 내용을 입력하세요!");
+                    return ;
+                }
+
+                // Ajax 요청 보내기
+                fetch('/add_comment/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCsrfToken()  // CSRF 토큰 추가
+                    },
+                    body: JSON.stringify({post_id:postId, content:content})
+                })
+                .then(response => response.json())
+                .then(data => {
+
+                    // 댓글 목록에 새 댓글 추가
+                    const commentList = post.querySelector('.comment_list');
+                    const newComment = document.createElement('div');
+                    newComment.className = 'comment';
+                    newComment.dataset.commentId = data.id; //댓글 ID 저장
+                    newComment.innerHTML = `
+                        <span>${data.content}</span>
+                        <button class ="delete_comment_btn">삭제</button>`;
+
+                    commentList.appendChild(newComment);
+
+                    // 입력 필드 초기화
+                    input.value = '';
+                })
+
+            })
+        })
+
+        // 댓글 삭제
+        document.body.addEventListener('click', (event) => { // document.body: 문서 전체를 감싸는 최상위 요소(Body), Body에서 모든 자식 요소의 클릭 이벤트를 감지 // (event) : 이벤트 객체(Event Object), 클릭 이벤트에 대한 정보를 담고 있는 객체
+            if (event.target.classList.contains('delete_comment_btn')){ // 클릭된 요소가 delete_comment_btn 클래스를 포함한 버튼인지 확인
+            const commentElement = event.target.closest('.comment'); // 클릭된 삭제 버튼의 부모 댓글 요소 찾기
+            const commentId = commentElement.dataset.commentId; // 댓글 ID 가져오기
+
+            //Ajax 요청
+            fetch('/delete_comment/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrfToken() // CSRF 토큰 추가
+                },
+                body: JSON.stringify({ comment_id: commentId }) // 서버로 댓글 ID 전송
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    commentElement.remove();
+                } else {
+                    alert('댓글 삭제 실패')
+                }
+            })
+
+            }
+        })
+
+
+        // CSRF 토큰 가져오는 함수
+        function getCsrfToken() {
+            return document.cookie.split('; ')
+                .find(row => row.startsWith('csrftoken='))
+                .split('=')[1];
+        }
+    </script>
+</body>
+</html>
